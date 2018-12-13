@@ -288,34 +288,46 @@ sgrid;
 
 % Create Bode Plots
 
-omega = logspace(-2,2,100);
+% omega = logspace(-2,2,100);
+% 
+% sysg_lat_hi = frsp(sys_lat_hi,omega);
+% sysg_lat_lo = frsp(sys_lat_lo,omega);
+% 
+% sysg_long_hi = frsp(sys_long_hi,omega);
+% sysg_long_lo = frsp(sys_long_lo,omega);
 
-sysg_lat_hi = frsp(sys_lat_hi,omega);
-sysg_lat_lo = frsp(sys_lat_lo,omega);
+% figure;
+% BodeCount = 0;
+% for state = 1:1:5
+%     for control = 1:1:2
+%         BodeCount = BodeCount +1;
+%         title_string = sprintf('Bode Plot #%d\n State = %d\n Control = %d', BodeCount,state,control);
+%         vplot('bode', sel(sysg_long_hi,state,control), 'b--', sel(sysg_long_lo,state,control), 'r');
+%         disp(title_string);
+%         legend('hifi', 'lofi');
+%         pause;
+%     end
+% end
+% 
+% for state = 1:1:6
+%     for control = 1:1:3
+%         BodeCount = BodeCount + 1;
+%         title_string = sprintf('Bode Plot #%d\n State = %d\n Control = %d', BodeCount,state,control);
+%         vplot('bode', sel(sysg_lat_hi,state,control), 'b--', sel(sysg_lat_lo,state,control), 'r');
+%         disp(title_string);
+%         legend('hifi', 'lofi');
+%         pause;
+%     end
+% end
 
-sysg_long_hi = frsp(sys_long_hi,omega);
-sysg_long_lo = frsp(sys_long_lo,omega);
+transferfunctions=tf(SS_lo);
+elevator=minreal(transferfunctions(19,2));
+opt=stepDataOptions('StepAmplitude', -1);
+t=[0:0.01:5];
+y= step(elevator,opt,t);
+figure(1)
+figure(4); 
+plot(t,y)
+figure(5); 
+pzmap(elevator)
 
-figure;
-BodeCount = 0;
-for state = 1:1:5
-    for control = 1:1:2
-        BodeCount = BodeCount +1;
-        title_string = sprintf('Bode Plot #%d\n State = %d\n Control = %d', BodeCount,state,control);
-        vplot('bode', sel(sysg_long_hi,state,control), 'b--', sel(sysg_long_lo,state,control), 'r');
-        disp(title_string);
-        legend('hifi', 'lofi');
-        pause;
-    end
-end
-
-for state = 1:1:6
-    for control = 1:1:3
-        BodeCount = BodeCount + 1;
-        title_string = sprintf('Bode Plot #%d\n State = %d\n Control = %d', BodeCount,state,control);
-        vplot('bode', sel(sysg_lat_hi,state,control), 'b--', sel(sysg_lat_lo,state,control), 'r');
-        disp(title_string);
-        legend('hifi', 'lofi');
-        pause;
-    end
-end
