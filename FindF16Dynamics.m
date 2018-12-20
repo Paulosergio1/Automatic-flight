@@ -368,7 +368,7 @@ damp(a_lat)
 [a_sp, b_sp, c_sp, d_sp]=ssdata(red_sys_sp);
 c_sp=eye(2);
 
-K=place(a_sp, b_sp, [-1.31535,-4.1710]);
+K=place(a_sp, b_sp, [-2.743-4.75102i,-2.743+4.75102i]);
 a_new_sp=a_sp-b_sp*K;
 
 sys_sp_new=ss(a_new_sp,b_sp,c_sp,d_sp);
@@ -376,7 +376,14 @@ tf_sys=tf(sys_sp_new);
 tf_q=tf_sys(2);
 s=tf('s');
 z=zero(tf_q);
-tf_new=tf_q*(s+4.1148)/(s-z);
+tf_new=tf_sys*(s+4.1148)/(s-z);
+dt=0.001;
+t=0:dt:3;
+u=[0 zeros(1,1/dt) ones(1,2/dt)];
+figure(8);
+lsim(tf_new(1),u,t)
+figure(9);
+lsim(tf_new(2),u,t)
 
 
 sys_new=feedback(K(2)*red_sys_sp,[1 1]);
