@@ -376,8 +376,7 @@ tf_sys=tf(sys_sp_new);
 tf_q=tf_sys(2);
 s=tf('s');
 z=zero(tf_q);
-tf_new=tf_q*(s+4.1148)/(s-z);
-
+tf_new=tf_q*(s+4.1148)/(s
 
 sys_new=feedback(K(2)*red_sys_sp,[1 1]);
 sys_new_2=feedback(K(1)*sys_new,[1 1]);
