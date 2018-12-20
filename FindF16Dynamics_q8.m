@@ -19,8 +19,8 @@ newline = sprintf('\n');
 
 %% Trim aircraft to desired altitude and velocity
 %%
-altitude = input('Enter the altitude for the simulation (ft)  :  ');
-velocity = input('Enter the velocity for the simulation (ft/s):  ');
+altitude = 5000;%input('Enter the altitude for the simulation (ft)  :  ');
+velocity = 300;%input('Enter the velocity for the simulation (ft/s):  ');
 
 %% Initial guess for trim
 %%
@@ -144,124 +144,124 @@ lat_poles_lo = spoles(sys_lat_lo);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Display results
-
-
-clc;
-
-disp(sprintf('Altitude: %.3f ft.', altitude));
-disp(sprintf('Velocity: %.3f ft/s\n\n', velocity));
-
-disp('For HIFI Model:  ');
-disp('Longitudal Direction:  ');
-disp(newline);
-
-disp('A =')
-for i=1:length( A_longitude_hi(:,1) )
-    mprintf([ A_longitude_hi(i,:) ],'  %.3e ')
-end %for
-
-disp('B =')
-for i=1:length( B_longitude_hi(:,1) )
-    mprintf([ B_longitude_hi(i,:) ],'  %.3e ')
-end %for
-
-disp('C =')
-for i=1:length( C_longitude_hi(:,1) )
-    mprintf([ C_longitude_hi(i,:) ],'  %.3e ')
-end %for
-
-disp('D =')
-for i=1:length( D_longitude_hi(:,1) )
-    mprintf([ D_longitude_hi(i,:) ],'  %.3e ')
-end %for
-
-rifd(long_poles_hi)
-
-disp(newline);
-
-disp('Lateral Direaction:  ');
-
-disp(newline);
-
-disp('A =')
-for i=1:length( A_lateral_hi(:,1) )
-    mprintf([ A_lateral_hi(i,:) ],'  %.3e ')
-end %for
-
-disp('B =')
-for i=1:length( B_lateral_hi(:,1) )
-    mprintf([ B_lateral_hi(i,:) ],'  %.3e ')
-end %for
-
-disp('C =')
-for i=1:length( C_lateral_hi(:,1) )
-    mprintf([ C_lateral_hi(i,:) ],'  %.3e ')
-end %for
-
-disp('D =')
-for i=1:length( D_lateral_hi(:,1) )
-    mprintf([ D_lateral_hi(i,:) ],'  %.3e ')
-end %for
-
-rifd(lat_poles_hi)
-
-disp(newline);
-disp(newline);
-disp('For LOFI Model:  ');
-disp('Longitudal Direction:  ');
-disp(newline);
-
-disp('A =')
-for i=1:length( A_longitude_lo(:,1) )
-    mprintf([ A_longitude_lo(i,:) ],'  %.3e ')
-end %for
-
-disp('B =')
-for i=1:length( B_longitude_lo(:,1) )
-    mprintf([ B_longitude_lo(i,:) ],'  %.3e ')
-end %for
-
-disp('C =')
-for i=1:length( C_longitude_lo(:,1) )
-    mprintf([ C_longitude_lo(i,:) ],'  %.3e ')
-end %for
-
-disp('D =')
-for i=1:length( D_longitude_lo(:,1) )
-    mprintf([ D_longitude_lo(i,:) ],'  %.3e ')
-end %for
-
-% Display the real, imaginary, frequency (magnitude) and damping ratios
-rifd(long_poles_lo)
-
-disp(newline);
-
-disp('Lateral Direaction:  ');
-
-disp(newline);
-
-disp('A =')
-for i=1:length( A_lateral_lo(:,1) )
-    mprintf([ A_lateral_lo(i,:) ],'  %.3e ')
-end %for
-
-disp('B =')
-for i=1:length( B_lateral_lo(:,1) )
-    mprintf([ B_lateral_lo(i,:) ],'  %.3e ')
-end %for
-
-disp('C =')
-for i=1:length( C_lateral_lo(:,1) )
-    mprintf([ C_lateral_lo(i,:) ],'  %.3e ')
-end %for
-
-disp('D =')
-for i=1:length( D_lateral_lo(:,1) )
-    mprintf([ D_lateral_lo(i,:) ],'  %.3e ')
-end %for
+% 
+% 
+% clc;
+% 
+% disp(sprintf('Altitude: %.3f ft.', altitude));
+% disp(sprintf('Velocity: %.3f ft/s\n\n', velocity));
+% 
+% disp('For HIFI Model:  ');
+% disp('Longitudal Direction:  ');
+% disp(newline);
+% 
+% disp('A =')
+% for i=1:length( A_longitude_hi(:,1) )
+%     mprintf([ A_longitude_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('B =')
+% for i=1:length( B_longitude_hi(:,1) )
+%     mprintf([ B_longitude_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('C =')
+% for i=1:length( C_longitude_hi(:,1) )
+%     mprintf([ C_longitude_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('D =')
+% for i=1:length( D_longitude_hi(:,1) )
+%     mprintf([ D_longitude_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% rifd(long_poles_hi)
+% 
+% disp(newline);
+% 
+% disp('Lateral Direaction:  ');
+% 
+% disp(newline);
+% 
+% disp('A =')
+% for i=1:length( A_lateral_hi(:,1) )
+%     mprintf([ A_lateral_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('B =')
+% for i=1:length( B_lateral_hi(:,1) )
+%     mprintf([ B_lateral_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('C =')
+% for i=1:length( C_lateral_hi(:,1) )
+%     mprintf([ C_lateral_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('D =')
+% for i=1:length( D_lateral_hi(:,1) )
+%     mprintf([ D_lateral_hi(i,:) ],'  %.3e ')
+% end %for
+% 
+% rifd(lat_poles_hi)
+% 
+% disp(newline);
+% disp(newline);
+% disp('For LOFI Model:  ');
+% disp('Longitudal Direction:  ');
+% disp(newline);
+% 
+% disp('A =')
+% for i=1:length( A_longitude_lo(:,1) )
+%     mprintf([ A_longitude_lo(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('B =')
+% for i=1:length( B_longitude_lo(:,1) )
+%     mprintf([ B_longitude_lo(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('C =')
+% for i=1:length( C_longitude_lo(:,1) )
+%     mprintf([ C_longitude_lo(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('D =')
+% for i=1:length( D_longitude_lo(:,1) )
+%     mprintf([ D_longitude_lo(i,:) ],'  %.3e ')
+% end %for
 
 % Display the real, imaginary, frequency (magnitude) and damping ratios
-rifd(lat_poles_lo)
+% rifd(long_poles_lo)
+% 
+% disp(newline);
+% 
+% disp('Lateral Direaction:  ');
+% 
+% disp(newline);
+% 
+% disp('A =')
+% for i=1:length( A_lateral_lo(:,1) )
+%     mprintf([ A_lateral_lo(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('B =')
+% for i=1:length( B_lateral_lo(:,1) )
+%     mprintf([ B_lateral_lo(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('C =')
+% for i=1:length( C_lateral_lo(:,1) )
+%     mprintf([ C_lateral_lo(i,:) ],'  %.3e ')
+% end %for
+% 
+% disp('D =')
+% for i=1:length( D_lateral_lo(:,1) )
+%     mprintf([ D_lateral_lo(i,:) ],'  %.3e ')
+% end %for
+
+% Display the real, imaginary, frequency (magnitude) and damping ratios
+% rifd(lat_poles_lo)
 
 % %% All Poles
 % figure(1); 
@@ -321,11 +321,31 @@ rifd(lat_poles_lo)
 % end
 
 A_new = A_lo([3 7 8 5 11],[3 7 8 5 11]);
-B_new = B_lo([3 7 8 5 11],1:2);
-C_new = C_lo([3 7 8 5 11],[3 7 8 5 11]);
-D_new = D_lo([3 7 8 5 11],1:2);
+B_new = A_lo([3 7 8 5 11],[13 14]);
+%B_new = [A_lo([3 7 8 5 11],13) transpose(C_lo(19,[3 7 8 5 11]))];
+C_new = eye(5);%A_lo([3 7 8 5 11],[3 7 8 5 11]);
+D_new = zeros(5,2);%C_lo([3 7 8 5 11],[13 14]);
 SS_new = ss(A_new,B_new,C_new,D_new);
-LQR_matrix = lqr(A_new,B_new,10*eye(5),10*eye(2));
-LQR_matrix_innter = LQR_matrix(1,1);
-LQR_matrix_outer = LQR_matrix(1,2:5);
+
+Q=[1 0 0 0 0;
+    0 1 0 0 0;
+    0 0 1 0 0;
+    0 0 0 1 0;
+    0 0 0 0 1];
+R=[0.01 0;
+    0 0.04];
+
+% [LQR_matrix_inner, LQR_matrix_outer]=createlqr(A_new,B_new,Q,R);
+
+LQR_matrix = lqr(A_new,B_new,Q,R);
+LQR_matrix_inner = LQR_matrix(:,2:5);
+LQR_matrix_outer = LQR_matrix(:,1);
+
+% function [LQR_matrix_inner, LQR_matrix_outer]=createlqr(A_new,B_new,Q,R)
+%     LQR_matrix = lqr(A_new,B_new,Q,R);
+%     LQR_matrix_inner = LQR_matrix(:,2:5);
+%     LQR_matrix_outer = LQR_matrix(:,1);
+% end
+
+
 
