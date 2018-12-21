@@ -334,29 +334,100 @@ clc;
 red_sys_lon=reduce_lon(A_lo,C_longitude_lo);
 red_sys_lat=reduce_lat(A_lo,C_lateral_lo);
 red_sys_sp=reduce_sp(A_lo,C_lo);
+[a_lat,b_lat,c_lat,d_lat]=ssdata(red_sys_lat);
+ss_ar=ss(a_lat,b_lat(:,1),c_lat,d_lat(:,2));
+ss_dr=ss(a_lat,b_lat(:,2),c_lat,d_lat(:,2));
 
+dt=0.001;
+t_ar=0:dt:5;
+u_ar=zeros(1,5/dt+1);
+
+for i=1/dt:2/dt
+    u_ar(i)=1;
+end
+figure(1);
+ar=lsim(ss_ar,u_ar,t_ar);
+for i=1:4
+     subplot(4,1,i)
+     plot(ar(:,i,1))
+     xlim([0, 5000])
+end
+
+t_dr=0:dt:20;
+u_dr=zeros(1,20/dt+1);
+
+for i=2/dt:3/dt
+    u_dr(:,i)=5;
+end
+for i=3/dt:4/dt
+    u_dr(:,i)=-5;
+end
+figure(2);
+dr=lsim(ss_dr,u_dr,t_dr);
+for i=1:4
+     subplot(4,1,i)
+     plot(dr(:,i,1))
+     xlim([0 20000])
+end
+
+t_sp=0:dt:10;
+u_sp=zeros(1,10/dt+1);
+for i=2/dt:3/dt
+    u_sp(i)=1;
+end
+figure(3);
+sp=lsim(red_sys_lon,u_sp,t_sp)
+for i=1:4
+     subplot(4,1,i)
+     plot(sp(:,i,1))
+     xlim([0 10000])
+end
+t_ph=0:dt:300;
+u_ph=zeros(1,300/dt+1);
+for i=2/dt:3/dt
+    u_ph(i)=1;
+end
+figure(4);
+ph=lsim(red_sys_lon,u_ph,t_ph)
+for i=1:4
+     subplot(4,1,i)
+     plot(ph(:,i,1))
+     xlim([0 300000])
+end
+t_spi=0:dt:300;
+u_spi=zeros(1,300/dt+1);
+for i=1/dt:5/dt
+    u_spi(i)=10;
+end
+figure(5);
+spi=lsim(ss_ar,u_ph,t_ph)
+for i=1:4
+     subplot(4,1,i)
+     plot(sp(:,i,1))
+     xlim([0 300000])
+end
 % figure(1);
 % [x,t]=step(red_sys_sp);
 % plot(t,x(:,2))
 % figure(2);
 % [y,time]=step(red_sys_lon);
 % plot(t,y(1:length(t),4))
-figure(3);
-step(red_sys_lon)
-figure(4);
-impulse(red_sys_lon)
-figure(5);
-ar=step(red_sys_lat, 800);
-for i=1:4
-    subplot(4,1,i)
-    plot(ar(:,i,1))
-end
-figure(6);
-dr=impulse(red_sys_lat);
-for i=1:4
-    subplot(4,1,i)
-    plot(dr(:,i,1))
-end
+% figure(3);
+% step(red_sys_lon)
+% figure(4);
+% impulse(red_sys_lon)
+% figure(5);
+% ar=step(red_sys_lat, 800);
+% for i=1:4
+%     subplot(4,1,i)
+%     plot(ar(:,i,1))
+% end
+% figure(6);
+% dr=impulse(red_sys_lat);
+% for i=1:4
+%     subplot(4,1,i)
+%     plot(dr(:,i,1))
+% end
 
 
 [a_lon,b_lon,c_lon,d_lon]=ssdata(red_sys_lon);
@@ -381,9 +452,9 @@ dt=0.001;
 t=0:dt:3;
 u=[0 zeros(1,1/dt) ones(1,2/dt)];
 figure(8);
-lsim(tf_new(1),u)
-figure(9)
-lsim(tf_nwe(2)
+lsim(tf_new(1),u,t)
+figure(9);
+lsim(tf_new(2),u,t)
 
 
 sys_new=feedback(K(2)*red_sys_sp,[1 1]);
